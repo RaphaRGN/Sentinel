@@ -12,7 +12,7 @@ public class SentinelWSConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 
-    registry.addEndpoint("/hsc").withSockJS();
+    registry.addEndpoint("/hsc").setAllowedOrigins("*").withSockJS();
 
     }
     @Override

@@ -23,7 +23,6 @@ color:rgb(0, 0, 0);
 }
 
 .titulo h1:hover{
-
 color: red;
 }
 
@@ -114,12 +113,8 @@ font-family: 'Segoe UI', sans-serif;
   box-shadow: 0 5px 15px rgba(242, 97, 103, 0.4);
 }
 
-
-
-
-
 footer{
 
-    text-align: center;
+text-align: center;
 
-    }
+ }
