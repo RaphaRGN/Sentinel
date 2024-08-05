@@ -18,6 +18,4 @@ public class ThymeleafController {
         return "index";
 
     }
-
-
 }

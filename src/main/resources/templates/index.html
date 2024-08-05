@@ -41,22 +41,21 @@
 <script>
     let stompClient = null;
 
-    function connect() {
-        let socket = new SockJS('/hsc');
-        stompClient = Stomp.over(socket);
-        stompClient.connect({}, function (frame) {
-            console.log('Connected: ' + frame);
-        });
-    }
+     function connect() {
+         let socket = new SockJS('http://localhost:8080/ws-admin');
+         stompClient = Stomp.over(socket);
+         stompClient.connect({}, function (frame) {
+             console.log('Connected: ' + frame);
+         });
+     }
 
-    function sendNotification() {
-        let title = document.getElementById("title").value;
-        let code = document.getElementById("code").value;
-        let description = document.getElementById("description").value;
-        stompClient.send("/app/notify", {}, JSON.stringify({'code': code, 'title': title, 'description': description}));
-    }
-
-    connect();
+     function sendNotification() {
+         let title = document.getElementById("title").value;
+         let code = document.getElementById("code").value;
+         let description = document.getElementById("description").value;
+         stompClient.send("/app/notify", {}, JSON.stringify({'code': code, 'title': title, 'description': description}));
+     }
+     connect();
         </script>
     </body>
 </html>

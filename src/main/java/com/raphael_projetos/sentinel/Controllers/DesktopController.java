@@ -27,6 +27,4 @@ public class DesktopController {
             System.err.println("Awt Desktop is not supported!");
         }
     }
-
-
 }

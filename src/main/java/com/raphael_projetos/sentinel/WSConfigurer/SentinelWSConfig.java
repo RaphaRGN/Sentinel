@@ -12,14 +12,16 @@ public class SentinelWSConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
 
-    registry.addEndpoint("/hsc").setAllowedOrigins("*").withSockJS();
+    registry.addEndpoint("/ws-admin")
+            .setAllowedOrigins("http://localhost:8081","http://localhost:8080")
+            .withSockJS();
 
     }
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
 
-    registry.setApplicationDestinationPrefixes("/topic");
-    registry.enableSimpleBroker("/app");
+    registry.setApplicationDestinationPrefixes("/app");
+    registry.enableSimpleBroker("/topic");
 
     }
 
