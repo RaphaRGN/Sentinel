@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- Metas -->
+    <meta charset="UTF-8">
+    <meta name="author" content="Raphael Goettzinger Neto">
+    <meta name="description" content="Receptor do Sentinel">
+    <meta name="keywords" content="Receptor, mensagem, sentinel, sentinela">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Sentinel</title>
+
+    <!-- Links -->
+    <link rel="icon" href="/images/Hsclogo.jpg" type="image/png" sizes="100">
+    <link rel="stylesheet" href="/css/Sentinel.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+</head>
+
+<body>
+<div class="titulo">
+    <h1>Bem vindo ao Sentinel ! <br> Conte-me o que aconteceu: </h1>
+</div>
+
+<div class="message-container">
+    <form>
+        <label for="code">Código da ocorrência</label>
+        <input type="text" id="code" placeholder="Digite o código">
+        <br>
+        <label for="title">Título da ocorrência</label>
+        <input type="text" id="title" placeholder="Digite o título">
+        <br>
+        <label for="description">Descreva a ocorrência</label>
+        <input type="text" id="description" placeholder="Descrição">
+        <br>
+        <button type="button" class="bn632-hover bn28" onclick="sendNotification()">Enviar</button>
+
+
+    </form>
+</div>
+
+<script>
+    let stompClient = null;
+
+     function connect() {
+         let socket = new SockJS('http://localhost:8080/ws-admin');
+         stompClient = Stomp.over(socket);
+         stompClient.connect({}, function (frame) {
+             console.log('Connected: ' + frame);
+         });
+     }
+
+     function sendNotification() {
+         let title = document.getElementById("title").value;
+         let code = document.getElementById("code").value;
+         let description = document.getElementById("description").value;
+         stompClient.send("/app/notify", {}, JSON.stringify({'code': code, 'title': title, 'description': description}));
+     }
+     connect();
+        </script>
+    </body>
+</html>
