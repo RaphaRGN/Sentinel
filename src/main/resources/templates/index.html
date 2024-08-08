@@ -38,7 +38,6 @@
     </form>
 </div>
 
-<p>teste</p>
 
 <script>
     let stompClient = null;
@@ -58,6 +57,7 @@
          stompClient.send("/app/notify", {}, JSON.stringify({'code': code, 'title': title, 'description': description}));
      }
      connect();
+
         </script>
     </body>
 </html>

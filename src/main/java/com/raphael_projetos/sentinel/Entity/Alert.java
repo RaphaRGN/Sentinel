@@ -11,5 +11,7 @@ public class Alert {
     public String code;
     public String title;
     public String description;
+    public String file;
+
 
 }
